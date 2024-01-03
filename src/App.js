@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
+import { Typography, Space } from "antd";
 
-function App() {
+import { Navbar, Homepage, Exchanges, Cryptocurrencies, CryptoDetails, News, HoleLayout } from "./components";
+import "./App.css";
+
+const router = createBrowserRouter(createRoutesFromElements(
+  <Route element={<HoleLayout />}>
+    <Route path='/' element={<Homepage />} />
+    <Route path='exchanges' element={<Exchanges />} />
+    <Route path='cryptocurrencies' element={<Cryptocurrencies />} />
+    <Route path='crypto/:coinId' element={<CryptoDetails />} />
+    <Route path='news' element={<News />} />
+  </Route>
+))
+
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div div className="routes" >
+      <RouterProvider router={router} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
