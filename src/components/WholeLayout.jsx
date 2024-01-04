@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import { Layout, Typography, Space } from "antd";
 
-import { Navbar, Homepage, Exchanges, Cryptocurrencies, CryptoDetails, News } from ".";
+import { Navbar } from ".";
 import "../App.css";
 
-const HoleLayout = () => {
+const wholeLayout = () => {
     return (
         <div>
             <div className='app'>
@@ -33,4 +33,4 @@ const HoleLayout = () => {
     )
 }
 
-export default HoleLayout
+export default wholeLayout
