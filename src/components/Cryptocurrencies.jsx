@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
@@ -9,7 +9,13 @@ import { useState } from 'react';
 const Cryptocurrencies = ({ simplified }) => {
     const count = simplified ? 10 : 50
     const { data: cryptoList, isFetching } = useGetCryptosQuery(count)
-    const [cryptos, setCryptos] = useState(cryptoList && cryptoList.data && cryptoList.data.coins)
+    const [cryptos, setCryptos] = useState([]);
+
+    useEffect(() => {
+        if (cryptoList?.data?.coins) {
+            setCryptos(cryptoList.data.coins);
+        }
+    }, [cryptoList]);
     // console.log(cryptos)
     if (isFetching) return "Loading..."
 
