@@ -7,7 +7,7 @@ import icon from "../images/cryptocurrency.png"
 
 const Navbar = () => {
     return (
-        <div className='nav-container'>
+        <div>
             <div className='logo-container'>
                 <Avatar src={icon} size="large" />
             </div>

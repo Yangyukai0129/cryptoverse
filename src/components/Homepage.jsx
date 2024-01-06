@@ -1,6 +1,6 @@
 import React from 'react';
 import millify from 'millify';
-import { Typography, Row, Col, Statistic } from 'antd';
+import { Typography, Row, Col, Statistic, Skeleton } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
@@ -14,7 +14,19 @@ const Homepage = () => {
     // console.log(isFetching)
     const globalStas = data?.data?.stats
 
-    if (isFetching) return 'Loading...'
+    if (isFetching) {
+        return (
+            <Row gutter={[32, 32]} className='crtypto-card-container' >
+                {
+                    [1, 2, 3, 4, 5, 6, 7, 8].map((key) => (
+                        <Col xs={24} sm={12} lg={6} className='crypto-card' key={key}>
+                            <Skeleton loading={isFetching} active />
+                        </Col>
+                    ))
+                }
+            </Row >
+        )
+    }
 
     return (
         <>

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
-import { Card, Row, Col, Input } from 'antd';
+import { Card, Row, Col, Input, Skeleton } from 'antd';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { useState } from 'react';
@@ -26,7 +26,19 @@ const Cryptocurrencies = ({ simplified }) => {
         setCryptos(filteredData)
     }, [cryptoList, SearchTerm])
     // console.log(cryptos)
-    if (isFetching) return "Loading..."
+    if (isFetching) {
+        return (
+            <Row gutter={[32, 32]} className='crtypto-card-container' >
+                {
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((key) => (
+                        <Col xs={24} sm={12} lg={6} className='crypto-card' key={key}>
+                            <Skeleton loading={isFetching} active />
+                        </Col>
+                    ))
+                }
+            </Row >
+        )
+    }
 
     return (
         <>
