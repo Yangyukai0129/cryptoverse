@@ -5,6 +5,13 @@ import { Layout, Typography, Space } from "antd";
 import { Navbar } from ".";
 import "../App.css";
 
+const layoutStyle = {
+    borderRadius: 8,
+    overflow: 'hidden',
+    width: 'calc(50% - 8px)',
+    maxWidth: 'calc(50% - 8px)',
+};
+
 const wholeLayout = () => {
     return (
         <div>

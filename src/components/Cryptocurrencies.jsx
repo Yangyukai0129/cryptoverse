@@ -7,25 +7,37 @@ import { useGetCryptosQuery } from '../services/cryptoApi';
 import { useState } from 'react';
 
 const Cryptocurrencies = ({ simplified }) => {
-    const count = simplified ? 10 : 50
+    const count = simplified ? 10 : 100
     const { data: cryptoList, isFetching } = useGetCryptosQuery(count)
     const [cryptos, setCryptos] = useState([]);
+    const [SearchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
         if (cryptoList?.data?.coins) {
-            setCryptos(cryptoList.data.coins);
+            setCryptos(cryptoList?.data?.coins);
         }
     }, [cryptoList]);
+
+    useEffect(() => {
+        const filteredData = cryptoList?.data?.coins.filter((coin) => {
+            return coin.name.toLowerCase().includes(SearchTerm.toLowerCase())
+        })
+
+        setCryptos(filteredData)
+    }, [cryptoList, SearchTerm])
     // console.log(cryptos)
     if (isFetching) return "Loading..."
 
     return (
         <>
-            <div className='search-crypto'>
-                {/* <Input placeholder='Search Cryptocurrency' onChange={(e) => setSearchTerm(e.target.value)} /> */}
-            </div>
+            {!simplified && (
+                <div className='search-crypto'>
+                    <Input placeholder='Search Cryptocurrency' onChange={(e) => setSearchTerm(e.target.value)} />
+                </div>
+            )}
+
             <Row gutter={[32, 32]} className='crtypto-card-container'>
-                {cryptos.map((currency) => (
+                {cryptos && cryptos.length > 0 ? (cryptos.map((currency) => (
                     <Col xs={24} sm={12} lg={6} className='crypto-card' key={currency.uuid}>
                         <Link to={`/crypto/${currency.id}`}>
                             <Card
@@ -39,7 +51,9 @@ const Cryptocurrencies = ({ simplified }) => {
                             </Card>
                         </Link>
                     </Col>
-                ))}
+                ))
+                ) : (<p>No data available</p>)
+                }
             </Row>
         </>
     )
