@@ -25,7 +25,7 @@ const Cryptocurrencies = ({ simplified }) => {
 
         setCryptos(filteredData)
     }, [cryptoList, SearchTerm])
-    // console.log(cryptos)
+    console.log(cryptoList)
     if (isFetching) {
         return (
             <Row gutter={[32, 32]} className='crtypto-card-container' >

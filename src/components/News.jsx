@@ -21,12 +21,24 @@ const News = ({ simplified }) => {
     }
 
     return (
-        <div>
-            {cryptoNews && cryptoNews.length > 0 ? (cryptoNews?.value.map((news, i) => (
+        <Row gutter={[24, 24]}>
+            {cryptoNews && cryptoNews.news.length > 0 ? (cryptoNews?.news.map((news) => (
                 // 在这里渲染每条新闻的内容
-                <div key={i}>{news.name}</div>
-            ))) : (<p>No data available</p>)}
-        </div>
+                <Col xs={24} sm={12} lg={8} key={news.Title}>
+                    <Card hoverable className='news-card'>
+                        <a href={news.Url} target='blank' rel='noreferrer'>
+                            <div className='new-image-container'>
+                                <Title className='news-title' level={4}>{news.Title}</Title>
+                                <img src=''></img>
+                            </div>
+                        </a>
+                        <p>
+                            {news.Description > 100 ? `${news.Description.substring(0, 100)}...` : news.Description}
+                        </p>
+                    </Card>
+                </Col>
+            ))) : (<div style={{ height: '100vh' }}><p>No data available</p></div>)}
+        </Row>
 
     )
 }
