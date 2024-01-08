@@ -13,11 +13,11 @@ const News = ({ simplified }) => {
     console.log(cryptoNews)
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div style={{ height: '100vh' }}>Loading...</div>;
     }
 
     if (isError) {
-        return <div>Error loading news</div>;
+        return <div style={{ height: '100vh' }}>Error loading news</div>;
     }
 
     return (
@@ -27,9 +27,9 @@ const News = ({ simplified }) => {
                 <Col xs={24} sm={12} lg={8} key={news.Title}>
                     <Card hoverable className='news-card'>
                         <a href={news.Url} target='blank' rel='noreferrer'>
-                            <div className='new-image-container'>
+                            <div className='news-image-container'>
                                 <Title className='news-title' level={4}>{news.Title}</Title>
-                                <img src=''></img>
+                                <img src={news.Image} />
                             </div>
                         </a>
                         <p>
