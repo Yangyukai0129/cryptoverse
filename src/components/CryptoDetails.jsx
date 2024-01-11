@@ -15,6 +15,8 @@ const CryptoDetails = () => {
     const [timePeriod, setTimeperiod] = useState('7d')
     const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
     const cryptoDetails = data?.data?.coin
+    // console.log(cryptoDetails)
+
     if (!cryptoDetails || !cryptoDetails.name) {
         return <div>Loading...</div>;
     }
@@ -66,6 +68,38 @@ const CryptoDetails = () => {
                             </Col>
                             <Text className="stats">{value}</Text>
                         </Col>
+                    ))}
+                </Col>
+                <Col className='other-stats-statistics'>
+                    <Col className='coin-value-statistics-heading'>
+                        <Title level={3} className='coin-detail-heading'>Other Stats Info</Title>
+                        <p>An overview showing the statistics of {cryptoName}, such as the base and quote currency, the rank, and trading volume.</p>
+                    </Col>
+                    {genericStats.map(({ icon, title, value }) => (
+                        <Col className="coin-stats">
+                            <Col className="coin-stats-name">
+                                <Text>{icon}</Text>
+                                <Text>{title}</Text>
+                            </Col>
+                            <Text className="stats">{value}</Text>
+                        </Col>
+                    ))}
+                </Col>
+            </Col>
+            <Col className='coin-desc-link'>
+                <Row className='coin-desc'>
+                    <Title level={3} className='coin-desc-heading'>
+                        What is {cryptoName}
+                    </Title>
+                    {cryptoDetails.description}
+                </Row>
+                <Col className="coin-links">
+                    <Title level={3} className="coin-details-heading">{cryptoDetails.name} Links</Title>
+                    {cryptoDetails.links?.map((link) => (
+                        <Row className="coin-link" key={link.name}>
+                            <Title level={5} className="link-name">{link.type}</Title>
+                            <a href={link.url} target="_blank" rel="noreferrer">{link.name}</a>
+                        </Row>
                     ))}
                 </Col>
             </Col>
