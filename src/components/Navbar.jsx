@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import icon from "../images/cryptocurrency.png"
 
 const Navbar = () => {
+
     return (
         <div>
             <div className='logo-container'>
@@ -14,6 +15,7 @@ const Navbar = () => {
             <Typography.Title level={2} className='logo'>
                 <Link to="/">Cryptoverse</Link>
             </Typography.Title>
+
             <Menu theme='dark'>
                 <Menu.Item key={"HomeOutlined"} icon={<HomeOutlined />}>
                     <Link to="/">Home</Link>
@@ -28,9 +30,6 @@ const Navbar = () => {
                     <Link to="news">News</Link>
                 </Menu.Item>
             </Menu>
-            {/* <Button className='menu-control-container'>
-
-                </Button> */}
 
         </div>
     )
