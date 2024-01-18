@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery, } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = 'd'
-// 'https://news67.p.rapidapi.com';
+const baseUrl = 'https://news67.p.rapidapi.com';
 
 export const cryptoNewsApi = createApi({
     reducerPath: 'cryptoNewsApi',
